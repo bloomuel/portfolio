@@ -2,12 +2,12 @@
   --main-font: "Satoshi", system-ui, -apple-system, sans-serif;
   
   /* Brutalist Palette */
-  --bg-void: #000000;       /* The "sidebar" color */
-  --bg-site: #0D0D0D;       /* The content area color */
+  --bg-void: #000000;       
+  --bg-site: #0D0D0D;       
   
   /* The exact traffic yellow from the scoreboard image */
   --dot-active: #FFB300;    
-  --dot-inactive: #1A1A1A;  /* Very dark grey for empty holes */
+  --dot-inactive: #1A1A1A;  
   
   --border: #222222;
   --text-primary: #EDEDED;
@@ -52,13 +52,11 @@ header h1 {
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
-  /* NEW: Ensure h1 is uppercase */
   text-transform: uppercase; 
 }
 
 #main-nav {
   display: flex;
-  /* NEW: Reduced gap to accommodate new elements */
   gap: 20px; 
   align-items: center;
 }
@@ -78,40 +76,16 @@ header h1 {
 }
 
 .social-icon {
-    /* NEW: Add right margin to separate social icons from new view controls */
     margin-right: 12px;
 }
 .social-icon svg {
   width: 20px; height: 20px;
 }
 
-/* --- WORK SECTION --- */
-.section {
-  padding: 100px 48px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* CRUCIAL CHANGE: Remove top padding from #work section to pull content up */
-#work {
-    padding-top: 40px; 
-    padding-bottom: 100px;
-    margin-top: -1px;
-}
-
-.section-header h2 {
-  font-size: 72px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 40px;
-  color: var(--text-primary);
-}
-
 /* View Toggles - Adjusted for Header placement */
 .view-controls {
-  /* Removed margin-bottom: 32px; since it's in the header now */
   display: flex;
   gap: 0; 
-  /* NEW: Add separation from navigation links */
   margin-right: 16px;
 }
 
@@ -119,7 +93,6 @@ header h1 {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  /* Reduced padding/size to fit better in header */
   padding: 8px 12px;
   font-family: monospace;
   font-size: 11px;
@@ -143,6 +116,27 @@ header h1 {
   border-color: var(--text-primary);
 }
 
+/* --- GENERAL SECTION STYLES --- */
+.section {
+  padding: 100px 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Pull #work content up closer to the header */
+#work {
+    padding-top: 40px; 
+    padding-bottom: 100px;
+    margin-top: -1px;
+}
+
+.section-header h2 {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+  color: var(--text-primary);
+}
+
 /* Projects Grid */
 .projects-grid {
   display: grid;
@@ -156,27 +150,52 @@ header h1 {
 
 .project-card {
   background: var(--bg-site);
-  padding: 40px;
-  height: 360px;
+  padding: 0; 
+  height: 440px; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative; 
+  overflow: hidden; 
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .project-card:hover {
-  background: #181818;
+  background: #181818; 
 }
 
-.project-card:hover .proj-title {
-  color: var(--dot-active);
+/* Titles and Index Content Overlay (Hidden by Default) */
+.project-card .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2; 
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%); 
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth fade-in */
 }
+
+.project-card:hover .card-content {
+    opacity: 1; /* Visible on hover */
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.9) 100%); 
+}
+
 
 .project-card .index {
   font-family: monospace;
   color: var(--text-secondary);
   font-size: 14px;
+}
+
+.project-card .card-content .index {
+    color: var(--text-secondary); 
 }
 
 .project-card .proj-title {
@@ -187,6 +206,55 @@ header h1 {
   color: var(--text-primary);
   transition: color 0.2s;
 }
+
+.project-card:hover .proj-title {
+  color: var(--dot-active);
+}
+
+/* --- Project Image Definitions (Filling the whole card) --- */
+.project-card .project-image {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+    background-color: var(--dot-inactive); 
+}
+
+/* Project 1: EMBEDDED PCB (Always GIF) */
+.project-card[data-project="1"] .project-image[data-image="pcb"] {
+    background-image: url('Media/Planar K3_3 3D (animation).gif'); 
+}
+
+/* Project 2: POINT CLOUD */
+.project-card[data-project="2"] .project-image[data-image="pointcloud"] {
+    background-image: url('Media/PointCloudPlace.png'); 
+}
+
+/* Project 3: FERROFLUID */
+.project-card[data-project="3"] .project-image[data-image="ferrofluid"] {
+    background-image: url('Media/ferrofluid-placeholder.png'); 
+}
+
+/* Project 4: AVIONICS */
+.project-card[data-project="4"] .project-image[data-image="rocketry"] {
+    background-image: url('Media/Rocketry.png'); 
+}
+
+/* Project 5: RUBIKS CUBE */
+.project-card[data-project="5"] .project-image[data-image="rubiks"] {
+    background-image: url('Media/RubiksCube.png'); 
+}
+
+/* Project 6: RUSH HOUR */
+.project-card[data-project="6"] .project-image[data-image="rushhour"] {
+    background-image: url('Media/RushHour.png'); 
+}
+
 
 /* Projects List */
 .projects-list { display: none; }
@@ -259,10 +327,13 @@ header h1 {
 
   .projects-grid { grid-template-columns: 1fr; }
   .project-card .proj-title { font-size: 32px; }
+  .project-card { height: 350px; } 
+  /* Re-adjust content padding for mobile */
+  .project-card .card-content { padding: 24px; }
+
   .project-row .proj-title { font-size: 32px; }
 
   #main-nav {
-      /* Stack social icons/view controls and main links on smaller screens */
       flex-wrap: wrap; 
       justify-content: flex-end;
   }

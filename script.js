@@ -26,13 +26,22 @@ viewBtns.forEach(btn => {
   });
 });
 
+// Select the other main sections to control their visibility
+const aboutSection = document.getElementById('about');
+const contactSection = document.getElementById('contact');
+
+// UPDATED to select all project pages
 const projectPages = document.querySelectorAll('.project-page');
 document.querySelectorAll('.project-card, .project-row').forEach(item => {
   item.addEventListener('click', () => {
     const id = item.dataset.project;
     const target = document.getElementById(`project-${id}`);
     if(target) {
+      // Hide Work, About, and Contact sections
       document.getElementById('work').style.display = 'none';
+      aboutSection.style.display = 'none';
+      contactSection.style.display = 'none';
+      
       target.classList.add('active-page');
       window.scrollTo(0,0);
     }
@@ -42,7 +51,12 @@ document.querySelectorAll('.project-card, .project-row').forEach(item => {
 document.querySelectorAll('[data-back]').forEach(btn => {
   btn.addEventListener('click', () => {
     projectPages.forEach(p => p.classList.remove('active-page'));
+    
+    // Show Work, About, and Contact sections again
     document.getElementById('work').style.display = 'block';
+    aboutSection.style.display = 'block';
+    contactSection.style.display = 'block';
+    
     document.getElementById('work').scrollIntoView();
   });
 });
