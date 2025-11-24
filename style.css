@@ -1,132 +1,396 @@
-:root{
+:root {
   --main-font: "Satoshi", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
-  --accent: #7cc8ff;
-  --panel-bg: #1e1e1e;     /* centered panel (dark gray) */
-  --page-bg: #000000;      /* outer background (black) */
-  --muted: #cfcfcf;
+  --bg: #0A0A0A;
+  --panel: #111111;
+  --border: #1E1E1E;
+  --hover: #FFFFFF1A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --accent: #3D3D3D;
 }
 
-/* outer black background */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
 body {
   margin: 0;
-  padding: 36px;
-  background: var(--page-bg);
+  padding: 0;
+  background: var(--bg);
   font-family: var(--main-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #fff;
-}
-
-/* centered panel (the 'sheet') */
-#site-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--panel-bg);
-  border-radius: 6px;
+  color: var(--text-primary);
   min-height: 100vh;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  border: 1px solid rgba(0,0,0,0.45); /* subtle low-opacity dark border for seamless look */
-  overflow: hidden;
 }
 
-/* header */
+#site-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--panel);
+  min-height: 100vh;
+}
+
 header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:28px 48px;
-  border-bottom:1px solid rgba(255,255,255,0.03);
-  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 48px;
+  border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-  margin:0;
-  font-size:28px;
-  font-weight:300;
-  font-style:italic;
-  color:#fff;
-  letter-spacing:0.4px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
-/* nav */
-#main-nav { display:flex; gap:20px; align-items:center; }
+#main-nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
 
 #main-nav a {
-  color:#fff;
-  text-decoration:none;
-  font-weight:400;
-  font-style: italic;
-  padding-bottom:6px;
-  border-bottom:2px solid transparent;
-  transition: color .18s ease, border-color .18s ease;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s ease;
+  cursor: pointer;
 }
 
-#main-nav a.active { border-bottom-color: var(--accent); }
-#main-nav a:hover { color: var(--accent); }
+#main-nav a:hover {
+  color: var(--text-secondary);
+}
 
-/* social icons */
-.social-icon svg { width:20px; height:20px; color:#fff; opacity:0.95; }
+#main-nav a.active {
+  color: var(--text-primary);
+}
 
-/* pages */
-.page { display:none; padding-bottom:60px; }
-.page.active-page { display:block; }
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  transition: opacity 0.2s ease;
+}
 
-/* hero */
+.social-icon:hover svg {
+  opacity: 0.7;
+}
+
+.page {
+  display: none;
+}
+
+.page.active-page {
+  display: block;
+}
+
+/* Hero section with Dieter Rams spacing */
 .hero {
-  display:grid;
-  grid-template-columns: 360px 1fr;
-  gap:20px;
-  padding:36px 48px;
-  align-items:start;
+  padding: 48px 48px 32px 48px;
+  border-bottom: 1px solid var(--border);
 }
 
-/* left text */
-.title-left { font-size:40px; margin:0 0 10px 0; color:#fff; font-weight:300; font-style:italic; line-height:1; }
-.subtitle-line { height:6px; width:72px; background:#fff; margin:22px 0; }
-.subtitle-line.short { width:36px; margin-top:18px; }
-.subtitle { color:var(--muted); margin:0 0 18px 0; font-weight:300; font-style:italic; font-size:16px; }
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 48px;
+}
 
-/* canvas container */
-.circle-wrap { display:flex; align-items:center; justify-content:center; padding-top:6px; }
-#dotsCanvas { display:block; width:100%; max-width:560px; height:auto; background: transparent; }
+.hero-text h2 {
+  font-size: 56px;
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
 
-/* projects list (vertical like Fontshare) */
-.projects-list { margin: 18px 48px 36px 48px; display:grid; gap:10px; }
+.hero-text p {
+  color: var(--text-secondary);
+  margin: 12px 0 0 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Rectangular flip-dot canvas - Dieter Rams spacing */
+.dots-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+#dotsCanvas {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: transparent;
+}
+
+/* View toggle */
+.view-controls {
+  display: flex;
+  gap: 16px;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.view-btn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--text-secondary);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: var(--main-font);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-btn.active {
+  background: var(--text-primary);
+  color: var(--bg);
+  border-color: var(--text-primary);
+}
+
+.view-btn:hover:not(.active) {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+/* Projects grid view (Fontshare style cards) */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+.projects-grid.hidden {
+  display: none;
+}
+
+.project-card {
+  background: var(--panel);
+  padding: 48px 32px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-card:hover {
+  background: var(--hover);
+}
+
+.project-card .index {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.project-card .proj-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Projects list view (Fontshare style) */
+.projects-list {
+  display: none;
+  margin: 0;
+  background: var(--panel);
+}
+
+.projects-list.active {
+  display: block;
+}
 
 .project-row {
-  display:flex; align-items:center; gap:18px; padding:14px 16px;
-  border-radius:4px; cursor:pointer; background:transparent;
-  border:1px solid rgba(255,255,255,0.03);
-  transition: background .14s ease, transform .12s ease;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 32px;
+  padding: 40px 48px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.2s ease;
+  align-items: center;
 }
 
 .project-row:hover {
-  background: rgba(255,255,255,0.02);
-  transform: translateY(-3px);
+  background: var(--hover);
 }
 
 .project-row .index {
-  width:48px; text-align:center; color:#fff; font-weight:600; font-style:italic; font-size:18px;
+  text-align: right;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.05em;
 }
 
 .project-row .proj-title {
-  color: var(--muted); font-style:italic; font-weight:300; font-size:15px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-/* project page */
-.project-page { padding:40px 48px; color:#eee; }
-.project-page .back { color: var(--muted); text-decoration:none; display:inline-block; margin-bottom:14px; cursor:pointer; }
-.project-hero { max-width:720px; width:100%; margin-top:18px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); }
-
-/* responsive */
-@media (max-width:980px) {
-  .hero { grid-template-columns: 1fr; gap:24px; padding:24px; }
-  .projects-list { margin: 12px 24px 24px 24px; }
-  header { padding:20px 24px; }
+/* Project detail page */
+.project-page {
+  padding: 48px 48px 80px 48px;
+  color: var(--text-primary);
 }
 
-@media (max-width:520px) {
-  .project-row .index { width:36px; font-size:16px; }
-  header h1 { font-size:20px; }
-  .title-left { font-size:28px; }
+.project-page .back {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 32px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.project-page .back:hover {
+  color: var(--text-primary);
+}
+
+.project-page h3 {
+  font-size: 64px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.project-page p {
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-top {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .hero {
+    padding: 32px 32px 24px 32px;
+  }
+
+  .view-controls {
+    padding: 20px 32px;
+  }
+
+  .project-row {
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 32px 32px;
+  }
+
+  .project-row .proj-title {
+    font-size: 36px;
+  }
+
+  .project-card .proj-title {
+    font-size: 32px;
+  }
+
+  header {
+    padding: 24px 32px;
+  }
+
+  #main-nav {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-row {
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    padding: 24px 24px;
+  }
+
+  .project-row .proj-title {
+    font-size: 28px;
+  }
+
+  .project-card {
+    padding: 32px 24px;
+  }
+
+  .project-card .proj-title {
+    font-size: 28px;
+  }
+
+  header {
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  #main-nav {
+    gap: 20px;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-text h2 {
+    font-size: 40px;
+  }
+
+  .view-controls {
+    padding: 16px 24px;
+  }
+
+  .project-page {
+    padding: 32px 24px 60px 24px;
+  }
+
+  .project-page h3 {
+    font-size: 40px;
+  }
 }

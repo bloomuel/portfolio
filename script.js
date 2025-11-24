@@ -1,4 +1,4 @@
-// Header tab switching (Work/Resume/About/Contact)
+// Header navigation
 const headerLinks = document.querySelectorAll('#main-nav a[data-page]');
 const pages = document.querySelectorAll('.page');
 
@@ -6,7 +6,7 @@ headerLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const pg = link.dataset.page;
-    headerLinks.forEach(l=>l.classList.remove('active'));
+    headerLinks.forEach(l => l.classList.remove('active'));
     link.classList.add('active');
     pages.forEach(p => p.classList.remove('active-page'));
     if (pg === 'work') document.getElementById('home').classList.add('active-page');
@@ -17,10 +17,31 @@ headerLinks.forEach(link => {
   });
 });
 
-// Project list -> open project page
-document.querySelectorAll('.project-row').forEach(row => {
-  row.addEventListener('click', () => {
-    const id = row.dataset.project;
+// View toggle
+const viewBtns = document.querySelectorAll('.view-btn');
+const gridView = document.getElementById('projectsGrid');
+const listView = document.getElementById('projectsList');
+
+viewBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    viewBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    if (view === 'grid') {
+      gridView.classList.remove('hidden');
+      listView.classList.remove('active');
+    } else {
+      gridView.classList.add('hidden');
+      listView.classList.add('active');
+    }
+  });
+});
+
+// Project navigation (both grid and list)
+document.querySelectorAll('.project-card, .project-row').forEach(item => {
+  item.addEventListener('click', () => {
+    const id = item.dataset.project;
     pages.forEach(p => p.classList.remove('active-page'));
     const projectSection = document.getElementById(`project-${id}`);
     if (projectSection) projectSection.classList.add('active-page');
@@ -28,7 +49,7 @@ document.querySelectorAll('.project-row').forEach(row => {
   });
 });
 
-// back links
+// Back navigation
 document.querySelectorAll('[data-back]').forEach(b => {
   b.addEventListener('click', () => {
     pages.forEach(p => p.classList.remove('active-page'));
@@ -37,28 +58,26 @@ document.querySelectorAll('[data-back]').forEach(b => {
   });
 });
 
-// -----------------------------
-// Flip-dot grid (static positions with oscillating gradient colors)
-(function(){
+// Flip-dot display (Dieter Rams spacing)
+(function() {
   const canvas = document.getElementById('dotsCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d', { alpha: true });
 
-  // grid config (tweak COLS/ROWS to taste)
-  const COLS = 36;
-  const ROWS = 24;
-  const DOT_RADIUS = 6;
-  const SPACING = 18;
-  const COLOR_SPEED = 0.0009;
+  const COLS = 56;
+  const ROWS = 14;
+  const DOT_RADIUS = 3;
+  const SPACING = 12;
 
-  let W = 800, H = 520, dpr = window.devicePixelRatio || 1;
+  let W = 700, H = 200, dpr = window.devicePixelRatio || 1;
   let positions = [];
+  let dotStates = [];
 
-  function resize(){
-    const rect = canvas.getBoundingClientRect();
-    const width = Math.min(rect.width || 560, 760);
-    const height = Math.round((ROWS / COLS) * width + 0.12 * width);
-    W = width; H = height;
+  function resize() {
+    const container = canvas.parentElement;
+    const rect = container.getBoundingClientRect();
+    W = Math.min(rect.width, 700);
+    H = Math.round((ROWS / COLS) * W * 0.85);
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
     canvas.width = Math.round(W * dpr);
@@ -67,57 +86,69 @@ document.querySelectorAll('[data-back]').forEach(b => {
     computePositions();
   }
 
-  function computePositions(){
+  function computePositions() {
     positions = [];
+    dotStates = [];
     const gridWidth = (COLS - 1) * SPACING;
     const gridHeight = (ROWS - 1) * SPACING;
     const startX = (W - gridWidth) / 2;
     const startY = (H - gridHeight) / 2;
-    for (let r=0; r<ROWS; r++){
-      for (let c=0; c<COLS; c++){
+    
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
         positions.push({
-          x: startX + c*SPACING,
-          y: startY + r*SPACING,
+          x: startX + c * SPACING,
+          y: startY + r * SPACING,
           r, c
+        });
+        dotStates.push({
+          color: Math.random() > 0.5 ? 1 : 0,
+          nextFlip: Math.random() * 3000 + 1000
         });
       }
     }
   }
 
-  let start = performance.now();
+  let lastTime = performance.now();
 
-  function draw(now){
-    const t = now - start;
-    ctx.clearRect(0,0,W,H);
+  function draw(now) {
+    const delta = now - lastTime;
+    lastTime = now;
 
-    // optional subtle panel background inside canvas
-    // draw each dot with hue based on column/row + time (flowing gradient)
-    positions.forEach(p => {
-      const hue = ( (p.c / COLS) * 320 + (p.r / ROWS) * 40 + (t * COLOR_SPEED * 360) ) % 360;
-      const light = 45 + 8 * Math.sin((p.r + p.c) * 0.3 + t * 0.002);
-      const sat = 60 + 12 * Math.cos((p.c - p.r) * 0.2 + t * 0.001);
+    ctx.clearRect(0, 0, W, H);
 
-      // radial gradient per dot for subtle flip-dot look
-      const rad = DOT_RADIUS;
-      const grad = ctx.createRadialGradient(p.x - rad*0.28, p.y - rad*0.28, rad*0.15, p.x, p.y, rad);
-      grad.addColorStop(0, `hsl(${hue} ${sat}% ${Math.min(100, light+8)}%)`);
-      grad.addColorStop(1, `hsl(${hue} ${sat}% ${Math.max(8, light-12)}%)`);
+    positions.forEach((p, i) => {
+      const state = dotStates[i];
+      
+      // Update flip timing
+      state.nextFlip -= delta;
+      if (state.nextFlip <= 0) {
+        state.color = 1 - state.color;
+        state.nextFlip = Math.random() * 4000 + 2000;
+      }
+
+      // Draw dot with flip-dot style
+      const brightness = state.color === 1 ? 85 : 25;
+      const color = `hsl(0, 0%, ${brightness}%)`;
+
       ctx.beginPath();
-      ctx.fillStyle = grad;
-      ctx.arc(p.x, p.y, rad, 0, Math.PI*2);
+      ctx.fillStyle = color;
+      ctx.arc(p.x, p.y, DOT_RADIUS, 0, Math.PI * 2);
       ctx.fill();
 
-      // subtle edge
-      ctx.strokeStyle = 'rgba(0,0,0,0.2)';
-      ctx.lineWidth = 0.7;
+      // Subtle edge
+      ctx.strokeStyle = state.color === 1 ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.3)';
+      ctx.lineWidth = 0.5;
       ctx.stroke();
     });
 
     requestAnimationFrame(draw);
   }
 
-  // initialize
   resize();
-  window.addEventListener('resize', () => { clearTimeout(window.__dotsResize); window.__dotsResize = setTimeout(resize, 120); });
+  window.addEventListener('resize', () => {
+    clearTimeout(window.__dotsResize);
+    window.__dotsResize = setTimeout(resize, 120);
+  });
   requestAnimationFrame(draw);
 })();
