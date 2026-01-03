@@ -1,143 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Samuel Bloom — Portfolio</title>
-  <link href="https://api.fontshare.com/css?f[]=Satoshi:400,500,600,700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Bloom — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <div id="site-wrapper">
-    
-    <header>
-      <h1>S.BLOOM</h1>
-      <nav id="main-nav">
-        <div class="view-controls">
-          <button class="view-btn active" data-view="grid">Grid</button>
-          <button class="view-btn" data-view="list">List</button>
-        </div>
-        <a class="social-icon" href="https://github.com/bloomuel" target="_blank" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5C5.37.5 0 5.88 0 12.5c0 5.29 3.438 9.77 8.205 11.36.6.11.82-.26.82-.58 0-.29-.01-1.04-.016-2.05-3.338.73-4.042-1.61-4.042-1.61-.546-1.38-1.333-1.75-1.333-1.75-1.09-.75.083-.73.083-.73 1.205.086 1.84 1.24 1.84 1.24 1.07 1.84 2.807 1.31 3.492 1 .108-.78.418-1.31.76-1.61-2.665-.308-5.466-1.334-5.466-5.93 0-1.31.467-2.38 1.234-3.22-.124-.308-.535-1.547.118-3.23 0 0 1.005-.32 3.29 1.23.955-.266 1.98-.399 3-.405 1.02.006 2.045.14 3 .405 2.28-1.55 3.28-1.23 3.28-1.23.655 1.683.245 2.922.12 3.23.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.48 5.92.43.37.81 1.10.81 2.22 0 1.61-.015 2.91-.015 3.31 0 .32.216.69.825.57C20.565 22.27 24 17.79 24 12.5 24 5.88 18.627.5 12 .5z"/></svg>
-        </a>
-        <a class="social-icon" href="https://www.linkedin.com/in/bloom-samuel/" target="_blank" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.24 8.5h4.5V24h-4.5V8.5zM9.5 8.5h4.31v2.06h.06c.6-1.14 2.06-2.34 4.24-2.34 4.54 0 5.38 2.99 5.38 6.88V24h-4.5v-7.12c0-1.7-.03-3.88-2.37-3.88-2.37 0-2.73 1.86-2.73 3.78V24H9.5V8.5z"/></svg>
-        </a>
-        <a href="#work" class="scroll-link active">Work</a>
-        <a href="#about" class="scroll-link">About</a>
-        <a href="#contact" class="scroll-link">Contact</a>
-      </nav>
-    </header>
 
-    <main id="page-container">
-      <section id="work" class="section">
-        <div class="projects-grid" id="projectsGrid">
-          
-          <div class="project-card" data-project="1">
-            <div class="card-content">
-              <span class="index">01</span>
-              <span class="proj-title">Embedded Planarity Testing for PCB Dev.</span>
+    <div class="container">
+        <header class="sidebar">
+            <div class="sidebar-top">
+                <h1 class="name">SAMUEL BLOOM</h1>
+                <h2 class="tagline">ELECTRICAL AND COMPUTER ENGINEER</h2>
+                <p class="bio">
+                    I am an <strong>Electrical and Computer Engineering </strong> student at Olin College of Engineering. I specialize in embedded systems programming and hardware applications. In my spare time, I’m usually experimenting in the kitchen, playing music, or working on a personal project.
+                </p>
             </div>
-            <div class="project-image" data-image="pcb"></div>
-          </div>
-          
-          <div class="project-card" data-project="2">
-             <div class="card-content">
-              <span class="index">02</span>
-              <span class="proj-title">Point Cloud Processing Through GNNs</span>
-            </div>
-            <div class="project-image" data-image="pointcloud"></div>
-          </div>
-          
-          <div class="project-card" data-project="3">
-            <div class="card-content">
-              <span class="index">03</span>
-              <span class="proj-title">Ferrofluid Speaker Visualizer</span>
-            </div>
-            <div class="project-image" data-image="ferrofluid"></div>
-          </div>
-          
-          <div class="project-card" data-project="4">
-            <div class="card-content">
-              <span class="index">04</span>
-              <span class="proj-title">Avionics for Rocketry</span>
-            </div>
-            <div class="project-image" data-image="rocketry"></div>
-          </div>
-          
-          <div class="project-card" data-project="5">
-            <div class="card-content">
-              <span class="index">05</span>
-              <span class="proj-title">Rubiks Cube Mural Maker</span>
-            </div>
-            <div class="project-image" data-image="rubiks"></div>
-          </div>
-          
-          <div class="project-card" data-project="6">
-            <div class="card-content">
-              <span class="index">06</span>
-              <span class="proj-title">Rush Hour</span>
-            </div>
-            <div class="project-image" data-image="rushhour"></div>
-          </div>
-          
-        </div>
 
-        <div class="projects-list" id="projectsList">
-          <div class="project-row" data-project="1"><span class="index">01</span><span class="proj-title">Embedded Planarity Testing for PCB Dev.</span></div>
-          <div class="project-row" data-project="2"><span class="index">02</span><span class="proj-title">Point Cloud Processing Through GNNs</span></div>
-          <div class="project-row" data-project="3"><span class="index">03</span><span class="proj-title">Ferrofluid Speaker Visualizer</span></div>
-          <div class="project-row" data-project="4"><span class="index">04</span><span class="proj-title">Avionics for Rocketry</span></div>
-          <div class="project-row" data-project="5"><span class="index">05</span><span class="proj-title">Rubiks Cube Mural Maker</span></div>
-          <div class="project-row" data-project="6"><span class="index">06</span><span class="proj-title">Rush Hour</span></div>
-        </div>
-      </section>
+            <div class="sidebar-bottom">
+                <div class="link-group">
+                    <span class="mini-label">SOCIAL</span>
+                    <a href="https://github.com/bloomuel" target="_blank" class="nav-link">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/bloom-samuel/" target="_blank" class="nav-link">LinkedIn ↗</a>
+                </div>
+                <div class="link-group">
+                    <span class="mini-label">CONTACT</span>
+                    <a href="mailto:your-email@example.com" class="nav-link">Email ↗</a>
+                </div>
+            </div>
+        </header>
 
-      <section id="about" class="section content-section">
-        <div class="section-header"><h2>About</h2></div>
-        <div class="content-body"><p>I am a Computer Engineering student specializing in embedded systems and hardware-software interfaces...</p></div>
-      </section>
+        <main class="content">
+            <div class="project-list">
+                <div class="card">
+                    <span class="label">PROJECT 01 — EMBEDDED</span>
+                    <h3>Embedded Planarity Testing for PCB Dev.</h3>
+                    <p>Hardware-software interface solution for PCB quality assurance and planarity verification.</p>
+                </div>
 
-      <section id="contact" class="section content-section">
-        <div class="section-header"><h2>Contact</h2></div>
-        <div class="content-body"><p>Reach out via LinkedIn or email.</p></div>
-      </section>
-      
-      <section id="project-1" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Embedded Planarity Testing for PCB Dev.</h3>
-         <p>Project details...</p>
-      </section>
-      
-      <section id="project-2" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Point Cloud Processing Through GNNs</h3>
-         <p>Project details...</p>
-      </section>
-      <section id="project-3" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Ferrofluid Speaker Visualizer</h3>
-         <p>Project details...</p>
-      </section>
-      <section id="project-4" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Avionics for Rocketry</h3>
-         <p>Project details...</p>
-      </section>
-      <section id="project-5" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Rubiks Cube Mural Maker</h3>
-         <p>Project details...</p>
-      </section>
-      <section id="project-6" class="page project-page">
-         <a class="back" data-back>← Back</a>
-         <h3>Rush Hour</h3>
-         <p>Project details...</p>
-      </section>
-      
-    </main>
-  </div>
-  <script src="script.js"></script>
+                <div class="card">
+                    <span class="label">PROJECT 02 — GNN</span>
+                    <h3>Point Cloud Processing Through GNNs</h3>
+                    <p>Utilizing Graph Neural Networks for 3D spatial data processing and object classification.</p>
+                </div>
+
+                <div class="card">
+                    <span class="label">PROJECT 03 — HARDWARE</span>
+                    <h3>Ferrofluid Speaker Visualizer</h3>
+                    <p>Interactive audio-visual experience using magnetic fluid dynamics controlled by frequency analysis.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
 </body>
-</html> 
+</html>
