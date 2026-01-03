@@ -37,7 +37,7 @@ body {
   font-size: 90px; 
   font-weight: 900; 
   letter-spacing: -5px; 
-  line-height: 0.85;
+  line-height: 0.92; 
   margin-bottom: 30px;
 }
 
@@ -55,10 +55,13 @@ body {
   line-height: 1.6;
 }
 
+/* Sidebar Navigation Spacing */
 .sidebar-bottom {
   display: flex;
-  gap: 100px;
+  justify-content: flex-start;
+  gap: 80px; 
   margin-top: 4vh;
+  flex-wrap: wrap;
 }
 
 .link-group {
@@ -92,6 +95,13 @@ body {
   padding: 10vh 80px 10vh 0; 
 }
 
+/* Card Link Reset */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .card {
   position: relative;
   background-color: var(--dark-gray);
@@ -120,6 +130,12 @@ body {
   transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: 1;
   filter: brightness(0.35);
+  object-position: center;
+}
+
+/* Position adjustment for Mario mural */
+.rubiks-mural .hover-gif {
+  object-position: center top;
 }
 
 .card:hover {
@@ -150,6 +166,7 @@ body {
   font-size: 40px; 
   margin: 20px 0; 
   letter-spacing: -1.5px;
+  text-transform: uppercase;
 }
 
 .card p { 
@@ -167,5 +184,5 @@ body {
   .container { flex-direction: column; }
   .sidebar, .content { width: 100%; height: auto; position: relative; padding: 60px 40px; }
   .name { font-size: 60px; }
-  .sidebar-bottom { margin-top: 60px; }
+  .sidebar-bottom { gap: 40px; margin-top: 60px; }
 }

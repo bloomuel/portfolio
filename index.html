@@ -15,19 +15,24 @@
                 <h1 class="name">SAMUEL<br>BLOOM</h1>
                 <h2 class="tagline">ELECTRICAL AND COMPUTER ENGINEER</h2>
                 <p class="bio">
-                    I am an <strong>Electrical and Computer Engineering</strong> student at Olin College of Engineering. I specialize in embedded systems programming and hardware applications. In my spare time, I’m usually experimenting in the kitchen, playing music, or working on a personal project.
+                    I am an ECE student at Olin College of Engineering. I specialize in embedded systems programming and hardware applications. In my spare time, I'm usually drinking coffee, playing music, or working on a personal project.
                 </p>
             </div>
 
             <div class="sidebar-bottom">
                 <div class="link-group">
                     <span class="mini-label">SOCIAL</span>
-                    <a href="https://github.com/bloomuel" target="_blank" class="nav-link">GitHub ↗</a>
-                    <a href="https://www.linkedin.com/in/bloom-samuel/" target="_blank" class="nav-link">LinkedIn ↗</a>
+                    <a href="https://github.com/bloomuel" target="_blank" class="nav-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/bloom-samuel/" target="_blank" class="nav-link">LinkedIn</a>
                 </div>
                 <div class="link-group">
                     <span class="mini-label">CONTACT</span>
-                    <a href="mailto:your-email@example.com" class="nav-link">Email ↗</a>
+                    <a href="mailto:sbloom@olin.edu" class="nav-link">Email</a>
+                </div>
+                <div class="link-group">
+                    <span class="mini-label">OTHER</span>
+                    <a href="Media/S. Bloom - Resume.pdf" target="_blank" class="nav-link">Resume</a>
+                    <a href="Media/Samuel_Bloom_Cover_Letter.pdf" target="_blank" class="nav-link">Cover Letter</a>
                 </div>
             </div>
         </header>
@@ -35,54 +40,79 @@
         <main class="content">
             <div class="project-list">
                 
-                <div class="card">
-                    <img src="Media/Planar K3_3 3D (animation).gif" alt="Planarity Testing" class="hover-gif">
-                    <div class="card-content">
-                        <span class="label">PROJECT 01 — DISCRETE MATHEMATICS, PYTHON, GRAPH THEORY</span>
-                        <h3>Embedded Planarity Testing for PCB Development</h3>
-                        <p>Utilizing Discrete Mathematics and Graph Theory to analyze planarity of graph and find possible routing for PCB traces.</p>
+                <a href="https://github.com/bloomuel/pcb_planarity" target="_blank" class="card-link">
+                    <div class="card">
+                        <img src="Media/Planar K3_3 3D (animation).gif" alt="Planarity Testing" class="hover-gif">
+                        <div class="card-content">
+                            <span class="label">DISCRETE MATHEMATICS, PYTHON, NETWORKX, GRAPH THEORY</span>
+                            <h3>Embedded Planarity Testing for PCB Development</h3>
+                            <p>Utilizing Discrete Mathematics and Graph Theory to analyze planarity of graph and find possible routing for PCB traces.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
-                    <img src="Media/GNN_PC.png" alt="GNN Processing" class="hover-gif">
-                    <div class="card-content">
-                        <span class="label">PROJECT 02 - GRAPH NEURAL NETWORKS, MACHINE LEARNING, LIDAR</span>
-                        <h3>Point Cloud Processing Through GNNs</h3>
-                        <p>Utilizing Graph Neural Networks for 3D spatial data processing and object classification.</p>
+                <a href="https://github.com/bloomuel/sync-drive" target="_blank" class="card-link">
+                    <div class="card">
+                        <img src="Media/nodes.gif" alt="Sync-Drive" class="hover-gif">
+                        <div class="card-content">
+                            <span class="label">NETWORKS & PROTOCOLS, C PROGRAMMING, SOCKETS, IPV4/IVP6</span>
+                            <h3>SYNC-DRIVE</h3>
+                            <p>Developed with TCP network protocols and communication of varying file types over IPv4 and IPv6.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
-                    <img src="Media/ferrofluid-visual.gif" alt="Sync-Drive" class="hover-gif">
-                    <div class="card-content">
-                        <span class="label">PROJECT 03 — NETWORKS & PROTOCOLS, C PROGRAMMING</span>
-                        <h3>SYNC-DRIVE</h3>
-                        <p>Developed with TCP network protocols and communication of varying file types over IPv4 and IPv6.</p>
+                <a href="https://github.com/Rixhee/point_cloud_processing_GNN" target="_blank" class="card-link">
+                    <div class="card">
+                        <img src="Media/GNN_PC.png" alt="GNN Processing" class="hover-gif">
+                        <div class="card-content">
+                            <span class="label">GRAPH NEURAL NETWORKS, MACHINE LEARNING, LIDAR</span>
+                            <h3>Point Cloud Processing Through GNNs</h3>
+                            <p>Utilizing Graph Neural Networks for 3D spatial data processing and object classification.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
-                    <img src="Media/elpv-visual.jpg" alt="ELPV Detection" class="hover-gif">
+                <div class="card" onclick="openPDF()">
+                    <img src="Media/ELPV-DATASET-IMAGE.jpg" alt="ELPV Detection" class="hover-gif">
                     <div class="card-content">
-                        <span class="label">PROJECT 04 — COMPUTER VISION</span>
+                        <span class="label">SIGNAL PROCESSING, PYTHON, FAST FOURIER TRANSFORM</span>
                         <h3>ELPV Defect Detection</h3>
                         <p>Utilized 2D Discrete Fourier transform (DFT) to analyze the defects found in solar panel cells.</p>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="Media/mural-visual.jpg" alt="Rubiks Mural" class="hover-gif">
-                    <div class="card-content">
-                        <span class="label">PROJECT 05 — ROBOTICS & MECHATRONICS</span>
-                        <h3>Rubik’s Cube Mural Maker</h3>
-                        <p>A robotic Rubik’s Cube mural system built to physically produce visual patterns through coordinated mechanical motion.</p>
+                <a href="https://bugates.github.io/PIE-Rubiks-Cube-Mural-Maker/" target="_blank" class="card-link">
+                    <div class="card rubiks-mural">
+                        <img src="Media/mario.png" alt="Rubiks Mural" class="hover-gif">
+                        <div class="card-content">
+                            <span class="label">ROBOTICS & MECHATRONICS</span>
+                            <h3>Rubik’s Cube Mural Maker</h3>
+                            <p>A robotic Rubik’s Cube mural system built to physically produce visual patterns through coordinated mechanical motion.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
+
+                <a href="https://github.com/olincollege/RushHour" target="_blank" class="card-link">
+                    <div class="card">
+                        <img src="Media/rush_hour.png" alt="Rush Hour" class="hover-gif">
+                        <div class="card-content">
+                            <span class="label">PYTHON, SOFTWARE ARCHITECTURE, GAME DEVELOPMENT</span>
+                            <h3>RUSH HOUR</h3>
+                            <p>Developed the board game Rush Hour in Python using Model-View-Controller (MVC) protocol.</p>
+                        </div>
+                    </div>
+                </a>
 
             </div>
         </main>
     </div>
+
+    <script>
+        function openPDF() {
+            window.open('Media/qea3_final_dft-3.pdf', 'PDFWindow', 'width=800,height=1000');
+        }
+    </script>
 
 </body>
 </html>
